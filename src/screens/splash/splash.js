@@ -1,5 +1,5 @@
 import React, { useEffect, useRef } from 'react';
-import { Image, StyleSheet, Text, View , Animated } from 'react-native';
+import { Image, StyleSheet, Text, View, Animated } from 'react-native';
 import imagesIndex from '../../assets/images/imagesIndex'
 import { globalStyle, Screens, strings, urls } from '../../res';
 import { getAllMovies } from '../../res/api/api';
@@ -35,12 +35,24 @@ const Splash = (props) => {
     }
 
     const getMoviesFromApi = async () => {
-        await fetch(urls.mainURl)
-            .then(res => res?.json())
+        // try {
+        //     await fetch(urls.mainURl)
+        //         .then(res => res?.json())
+        //         .then(resJson => {
+        //             setMovies(resJson);
+        //             loadingDataDone = true;
+        //         })
+        //     timerDone && navigateToHomePage();
+        // } catch (error) {
+        //     console.log('error: ', error);
+        // }
+        await getAllMovies()
             .then(resJson => {
                 setMovies(resJson);
                 loadingDataDone = true;
             })
+            .catch(err => console.log('error: ' ,err ));
+
         timerDone && navigateToHomePage();
     }
 
@@ -52,7 +64,7 @@ const Splash = (props) => {
         // Will change fadeAnim value to 0 in 3 seconds
         Animated.timing(fadeAnim, {
             toValue: 0,
-            duration: 4000 , 
+            duration: 4000,
             useNativeDriver: true
         }).start();
     };
@@ -68,7 +80,7 @@ const Splash = (props) => {
 
     return (
 
-        <View style={{ flex: 1 ,  backgroundColor: 'black', }}>
+        <View style={{ flex: 1, backgroundColor: 'black', }}>
             <Animated.View style={[styles.container, { opacity: fadeAnim }]} >
                 <Image {...imageParams} />
                 <Text style={styles.text}>{strings.splash_text}</Text>
