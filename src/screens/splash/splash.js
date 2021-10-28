@@ -58,8 +58,8 @@ const Splash = (props) => {
     };
 
     useEffect(() => {
-        fadeOut()
-        getMoviesFromApi()
+        fadeOut();
+        getMoviesFromApi();
         setTimeout(() => {
             timerDone = true;
             loadingDataDone && navigateToHomePage()

@@ -13,10 +13,6 @@ const MovieDetails = (props) => {
     }
 
     const params = {
-        mainImage: {
-            source: { uri: data?.posterurl },
-            style: styles.mainImage,
-        },
         title: {
             keyText: strings.title,
             value: data?.title,
@@ -45,7 +41,7 @@ const MovieDetails = (props) => {
     }
 
     return (
-        <View style={styles.detailesContainer}>
+        <View>
             <KeyValueItem {...params.title} />
             <KeyValueItem {...params.year} />
             <KeyValueItem {...params.genres} />
@@ -55,6 +51,5 @@ const MovieDetails = (props) => {
     )
 }
 
-const styles = StyleSheet
 
 export default MovieDetails;

@@ -11,6 +11,7 @@ import {
   LogBox,
   StyleSheet,
   View,
+  I18nManager
 } from 'react-native';
 import NavigationContainer from './route/nav';
 import { Provider } from 'react-redux';
@@ -20,12 +21,15 @@ const App = () => {
 
   LogBox.ignoreLogs([
     'source.uri should not be an empty string'
-  ])
+  ]);
+
+  I18nManager.allowRTL(false);
+
 
   return (
     <Provider store={Store}>
       <View style={styles.container}>
-        <NavigationContainer /> 
+        <NavigationContainer />
       </View>
     </Provider>
   );

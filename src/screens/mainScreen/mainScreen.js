@@ -35,6 +35,7 @@ const MainScreen = (props) => {
             /** no need to load extra data */
             return;
         }
+
         let moviesArr = moviesToDisplay;
         let start = loadingCounter * 10;
         let end = (loadingCounter + 1) * 10;
@@ -47,8 +48,6 @@ const MainScreen = (props) => {
             }
             return;
         }
-
-
 
         let itemsToAdd = movies.slice(start, end);
 

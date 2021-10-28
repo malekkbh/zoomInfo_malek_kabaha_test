@@ -11,13 +11,6 @@ const MovieItem = (props) => {
     const { data } = props; 
     const navigation = useNavigation() ; 
 
-    let rating_AVG = () => {
-        const sum = data?.ratings?.reduce((a, b) => a + b, 0);
-        const avg = (sum / data?.ratings?.length)?.toFixed(1) || 0;
-        return avg + '/10';
-    }
-
-
     const params = {
         mainImage: {
             source: { uri: data?.posterurl },

@@ -1,14 +1,14 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { Image, TouchableOpacity, StyleSheet, TextInput } from 'react-native';
-import  imagesIndex  from '../../assets/images/imagesIndex';
+import imagesIndex from '../../assets/images/imagesIndex';
 import { colors, globalStyle, sizes, strings } from '../../res';
 
 const Search = (props) => {
   const [searchText, setSeachText] = useState('');
   const [isFoucus, setIsFocus] = useState(false);
-  const [searchResults, setSearchResults] = useState(false);
 
   const inputRef = useRef(null);
+  let searchIcon = isFoucus ? imagesIndex.searchIcon_black() : imagesIndex.searchIcon_white();
 
   const params = {
     input: {
@@ -18,21 +18,14 @@ const Search = (props) => {
       style: styles.input,
       onChangeText: (val) => onChangeText(val),
       value: searchText,
-      onFocus: () => {
-        props.onfocus?.();
-        setIsFocus(true);
-      },
-      onBlur: () => {
-        props.onblur?.();
-        setIsFocus(false);
-        searchText?.length < 2 && setSeachText('');
-      },
+      onFocus: () => onfocus(),
+      onBlur: () => onblur(),
       editable: !props.textDisabled,
       autoFocus: props.autoFocus,
       pointerEvents: props.textDisabled ? 'none' : 'auto',
     },
     image: {
-      source: isFoucus ? imagesIndex.searchIcon_black() : imagesIndex.searchIcon_white(),
+      source: searchIcon,
       style: styles.image,
       resizeMode: 'contain',
     },
@@ -54,16 +47,23 @@ const Search = (props) => {
     },
   }; //params
 
+  const onfocus = () => {
+    props.onfocus?.();
+    setIsFocus(true);
+  }
+
+  const onblur = () => {
+    props.onblur?.();
+    setIsFocus(false);
+    searchText?.length < 2 && setSeachText('');
+  }
+
   const cleanAndBlurText = () => {
     onChangeText('');
     props.onblur?.();
     inputRef.current?.blur();
     props.resetData?.();
   };
-
-  const onSubmitEditingSearch = (val) => {
-    props.onSubmitEditingSearch?.(val);
-  }
 
   const onChangeText = async (val) => {
     setSeachText(val);
@@ -89,7 +89,7 @@ const Search = (props) => {
     <TouchableOpacity {...params.mainContainer}>
       {searchText?.length > 0 && (
         <TouchableOpacity {...params.xTouchable}>
-          <Image {...params.x} />  
+          <Image {...params.x} />
         </TouchableOpacity>
       )}
       <TextInput {...params.input} />
@@ -110,7 +110,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row-reverse',
     justifyContent: 'flex-end',
     alignItems: 'center',
-    backgroundColor:'#ffff' //'rgba(223, 239, 238, 0.5)',
+    backgroundColor: '#ffff' //'rgba(223, 239, 238, 0.5)',
   },
   image: {
     width: 27,
@@ -132,7 +132,7 @@ const styles = StyleSheet.create({
   x: {
     width: 10,
     height: 10,
-    resizeMode:'contain' , 
+    resizeMode: 'contain',
     marginLeft: 17
 
     // backgroundColor: 'red',

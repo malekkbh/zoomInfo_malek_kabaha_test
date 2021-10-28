@@ -9,11 +9,11 @@ const KeyValueItem = (props) => {
     const keyTextStyle = largeFont ? globalStyle.Rubik_Bold_14 : globalStyle.Rubik_Bold_12;
     const valueTextStyle = largeFont ? globalStyle?.Rubik_16 : globalStyle.Rubik_14;
 
-   
+
     return (
         <View style={styles.container}>
-            <Text style={styles.keyText(keyTextStyle)} >{keyText + ": "}</Text>
-            <Text style={styles.value(valueTextStyle)} >{value}</Text>
+            <Text style={styles.textStyle(keyTextStyle)} >{keyText + ": "}</Text>
+            <Text style={styles.textStyle(valueTextStyle)} >{value}</Text>
         </View>
     )
 }
@@ -25,16 +25,12 @@ const styles = StyleSheet.create({
         maxWidth: sizes.PageWidth - 200,
         alignItems: 'center',
         marginVertical: 2
-        // flex:1 , 
     },
-    keyText: (font) => ({
+    textStyle: (font) => ({
         color: 'black',
         ...font,
     }),
-    value: (font) => ({
-        color: 'black',
-        ...font,
-    })
+
 })
 
 export default KeyValueItem;
