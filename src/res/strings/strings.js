@@ -1,6 +1,6 @@
 export default{
   splash_text:'Malek Kabaha - Home Test' , 
-  mainScreenTitle:'Best 100 movies' , 
+  mainScreenTitle:'Best 100 Movies' , 
   title:"Title" , 
   year:'Year' , 
   ratings:'Rating AVG', 
