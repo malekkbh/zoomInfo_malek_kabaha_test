@@ -35,17 +35,6 @@ const Splash = (props) => {
     }
 
     const getMoviesFromApi = async () => {
-        // try {
-        //     await fetch(urls.mainURl)
-        //         .then(res => res?.json())
-        //         .then(resJson => {
-        //             setMovies(resJson);
-        //             loadingDataDone = true;
-        //         })
-        //     timerDone && navigateToHomePage();
-        // } catch (error) {
-        //     console.log('error: ', error);
-        // }
         await getAllMovies()
             .then(resJson => {
                 setMovies(resJson);
